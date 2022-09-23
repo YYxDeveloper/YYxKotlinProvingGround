@@ -86,7 +86,7 @@ class ExampleUnitTest {
         println("ttt:: random:: {$number}")
         //
         val it = 5
-        val answer = numbers.filter { it > 0 }
+        val answer = numbers.filter { it > 3 }
         println("ppppp:::{$answer}")
     }
 
@@ -97,7 +97,6 @@ class ExampleUnitTest {
         println("gggg:::{$positives}")
         assertTrue(positives.count() > 2)
     }
-
     // enum
     enum class CurrencyType(
         val chineseName: String,
@@ -145,20 +144,116 @@ class ExampleUnitTest {
 
     }
 
+    @Test
+    fun try_null_check(){
+        val emails = (1..8) // might be empty
+       emails?.let {
+           println("xxxx:::{$it}") }
+        val  value = null
+        val mapped = value?.let {  } ?: "no bill"
+        println("hhhh:::{$mapped}")
 
-//    @Test
-//    fun try_noneNull_listFiles() {
-//        val files = ("ss","dd")
-//
-//        println(files?.size ?: "empty") // if files is null, this prints "empty"
-//
-//// To calculate the fallback value in a code block, use `run`
-//        val filesSize = files?.size ?: run {
-//            return someSize
-//        }
-//        println(filesSize)
-//
-//    }
+    }
+    @Test
+    fun try_keyword__With() {
+    open class Turtle {
+        fun penDown(){}
+        fun penUp(){}
+        fun turn(degrees: Double){}
+        fun forward(pixels: Double){}
+    }
+    class  TurtleSon: Turtle() {
+
+    }
+    val myTurtle = Turtle()
+    with(myTurtle) { //draw a 100 pix square
+        penDown()
+        for (i in 1..4) {
+            forward(100.0)
+            turn(90.0)
+        }
+        penUp()
+    }
+    }
+
+    @Test
+    fun try_init_derivrd_class()
+    {
+        /**用户基类**/
+        open class Person(name:String){
+            /**次级构造函数**/
+            constructor(name:String,age:Int):this(name){
+                //初始化
+                println("-------基类次级构造函数---------")
+            }
+        }
+
+        /**子类继承 Person 类**/
+        class Student:Person{
+
+            /**次级构造函数**/
+            constructor(name:String,age:Int,no:String,score:Int):super(name,age){
+                println("-------继承类次级构造函数---------")
+                println("学生名： ${name}")
+                println("年龄： ${age}")
+                println("学生号： ${no}")
+                println("成绩： ${score}")
+            }
+        }
+
+        val cc = Student("young", 22 , "no.", 100 )
+        println("ccccc::${cc.toString()}")
+
+    }
+    @Test
+    fun aaa()
+    {
+        open class Shape {
+            open val vertexCount: Int = 0
+
+            open fun draw() { /*...*/ }
+            fun fill() { /*...*/ }
+        }
+
+        class Circle() : Shape() {
+            override val vertexCount = 4
+
+            override fun draw() { /*...*/ }
+        }
+    }
+    @Test fun ccc()
+    {
+        open class Animal(val name:String) {
+
+        var age: Int = 0
+
+        constructor(name: String, age: Int) : this(name) {
+
+            this.age = age
+
+        }
+
+    }
+        class Tiger : Animal { //不能用 Animal(name)
+
+            constructor(name: String) : super(name)
+
+            constructor(name: String, age: Int) : super(name, age)
+
+        }
+        val tiger = Tiger("yyx")
+        println("tiger name gggg::${tiger.name}")
+    }
+    @Test fun try_lateinit_AND_relection()
+    {
+        class MyClass {
+            lateinit var s:String
+            fun call(): Unit {
+                print(s)
+            }
+        }
+        val  cc = MyClass().call()
+    }
 
 }
 
