@@ -1,10 +1,13 @@
 package com.yyxdev.yyxkotlinprovingground
 
+import com.yyx.yyxannotationlib.YYxAnnotation
+import com.yyx.yyxannotationlib.YYxClassAnnotation
 import org.junit.Test
 import org.junit.Assert.*
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -21,8 +24,11 @@ class ExampleUnitTest {
     fun tryKotlin_createClass() {
         open class Shape
 
-        class Rectangle(var height: Double, var length: Double) : Shape() {
+        @YYxClassAnnotation class Rectangle(var height: Double, var length: Double) : Shape() {
             var perimeter = (height + length) * 2
+            @YYxAnnotation  fun setRadius() {
+
+            }
         }
 
         val rectangle = Rectangle(5.0, 2.0)
@@ -244,16 +250,14 @@ class ExampleUnitTest {
         val tiger = Tiger("yyx")
         println("tiger name gggg::${tiger.name}")
     }
-    @Test fun try_lateinit_AND_relection()
+
+    @Test fun aaa123()
     {
-        class MyClass {
-            lateinit var s:String
-            fun call(): Unit {
-                print(s)
-            }
+        class abc {
+            val gg = 1
         }
-        val  cc = MyClass().call()
     }
+
 
 }
 
