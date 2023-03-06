@@ -32,6 +32,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.yyxdev.yyxkotlinprovingground'
     android.sourceSets.androidTest {
         resources.srcDirs += ['src/androidTest/assets']
     }
