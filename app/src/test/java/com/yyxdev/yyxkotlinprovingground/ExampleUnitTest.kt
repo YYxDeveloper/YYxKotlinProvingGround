@@ -1,7 +1,7 @@
 package com.yyxdev.yyxkotlinprovingground
 
-import com.yyx.yyxannotationlib.YYxAnnotation
-import com.yyx.yyxannotationlib.YYxClassAnnotation
+
+import com.yyx.yyxannotationlib.*
 import org.junit.Test
 import org.junit.Assert.*
 import java.io.IOException
@@ -21,7 +21,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun tryKotlin_createClass() {
+    fun tryKotlin_createClassAndCustomAnnotation() {
         open class Shape
 
         @YYxClassAnnotation class Rectangle(var height: Double, var length: Double) : Shape() {
@@ -35,7 +35,14 @@ class ExampleUnitTest {
 //        println("The perimeter is ${rectangle.perimeter}")
 
     }
+    @Test
+    fun tryKotlin_customAnnotation() {
+        @TestAnnotation("a","b","c")
+        @Special("example")
+        class JustClass {
 
+        }
+    }
     @Test
     fun tryKotlin_forLoop() {
         val items = listOf("apple", "banana", "kiwifruit")
